@@ -54,7 +54,11 @@
         foreach ($contacts['add'] as $contact) {
             $commonNote = new CommonNote();
             $commonNote->setEntityId($contact['id'])
-                ->setText('Контакт id : '. $contact['id'])
+                ->setText(
+                    'Имя контакта : '. $contact['name'] . "\n"
+                        . 'Оветственный ID: ' . $contact['responsible_user_id'] . "\n"
+                        . 'Создано: ' . date('d.m.Y H:i:s', $contact['created_at'])
+                )
                 ->setCreatedBy(0);
             $notesCollection->add($commonNote);
         }
@@ -84,7 +88,11 @@
         foreach ($leads['add'] as $lead) {
             $commonNote = new CommonNote();
             $commonNote->setEntityId($lead['id'])
-                ->setText('Сделка id : '. $lead['id'])
+                ->setText(
+                    'Имя сделки : '. $lead['name'] . "\n"
+                    . 'Оветственный ID: ' . $lead['responsible_user_id'] . "\n"
+                    . 'Создано: ' . date('d.m.Y H:i:s', $lead['created_at'])
+                )
                 ->setCreatedBy(0);
             $notesCollection->add($commonNote);
         }
