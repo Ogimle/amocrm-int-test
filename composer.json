@@ -1,5 +1,6 @@
 {
     "require": {
-        "amocrm/oauth2-amocrm": "^3.0"
+        "amocrm/oauth2-amocrm": "^3.0",
+        "amocrm/amocrm-api-library": "^1.13"
     }
 }

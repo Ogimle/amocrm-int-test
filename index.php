@@ -120,24 +120,6 @@ SCRIPT;
 }
 
 
-//
-//$token = $accessToken->getToken();
-//
-//try {
-//    /**
-//     * Делаем запрос к АПИ
-//     */
-//    $data = $provider->getHttpClient()
-//        ->request('GET', $provider->urlAccount() . 'api/v2/account', [
-//            'headers' => $provider->getHeaders($accessToken)
-//        ]);
-//
-//    $parsedBody = json_decode($data->getBody()->getContents(), true);
-//    printf('ID аккаунта - %s, название - %s', $parsedBody['id'], $parsedBody['name']);
-//} catch (GuzzleHttp\Exception\GuzzleException $e) {
-//    var_dump((string)$e);
-//}
-
 
 ?>
     </body>
