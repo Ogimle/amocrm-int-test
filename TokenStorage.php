@@ -1,5 +1,5 @@
 <?php
-define('TOKEN_FILE', DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 'token_info.json');
+define('TOKEN_FILE', 'tmp' . DIRECTORY_SEPARATOR . 'token_info.json');
 
 class TokenStorage
 {
@@ -30,7 +30,7 @@ class TokenStorage
      */
     public static function get()
     {
-        $accessToken = json_decode(file_get_contents(TOKEN_FILE), true);
+        $accessToken = json_decode(@file_get_contents(TOKEN_FILE), true);
 
         if (
             isset($accessToken)

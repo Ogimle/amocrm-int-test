@@ -7,11 +7,15 @@
 
 require_once 'config.php';
 require_once 'TokenStorage.php';
+include_once __DIR__ . '/vendor/autoload.php';
 
 use AmoCRM\OAuth2\Client\Provider\AmoCRM;
 
-include_once __DIR__ . '/vendor/autoload.php';
-include_once __DIR__ . '/src/AmoCRM.php';
+if (isset($_GET['logout'])) {
+    TokenStorage::clear();
+    Header('Location: /');
+    exit;
+}
 
 session_start();
 
@@ -62,11 +66,12 @@ if ($accessToken) {
     /** @var \AmoCRM\OAuth2\Client\Provider\AmoCRMResourceOwner $ownerDetails */
     $ownerDetails = $provider->getResourceOwner($accessToken);
     printf('Hello, %s!', $ownerDetails->getName());
+    printf(' <a href="/index.php?logout=1">Выйти</a>');
 }
 /*
  * Если пришел запрос с кодом, то есть попытка авторизаии, тогда пытаемся получить токен
  */
-elseif (isset($_GET['request']) && isset($_GET['code']) && $_GET['state'] !== $_SESSION['oauth2state']) {
+elseif (isset($_GET['code']) && $_GET['state'] == $_SESSION['oauth2state']) {
     try {
         /** @var \League\OAuth2\Client\Token\AccessToken $access_token */
         $accessToken = $provider->getAccessToken(new League\OAuth2\Client\Grant\AuthorizationCode(), [
